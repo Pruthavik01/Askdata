@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Data Q&A System</title>
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css" rel="stylesheet" />
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+
+<body>
+    <main>
+        <div class="container">
+            <h1>🧠 Natural Language Query Engine for Tabular Data</h1>
+            
+            <!-- Data Source Selection -->
+            <div class="source-selection">
+                <h3>Select Your Data Source</h3>
+                <div class="source-buttons">
+                    <button id="fileBtn" class="source-btn active">File Upload</button>
+                    <button id="mysqlBtn" class="source-btn">MySQL Database</button>
+                </div>
+            </div>
+            
+            <!-- File Upload Section -->
+            <div class="section" id="fileUploadSection">
+                <p>📂 Upload a CSV or Excel file</p>
+                <input type="file" id="fileInput" accept=".csv,.xlsx" hidden>
+                <label for="fileInput">
+                    <div class="file-upload" id="dropArea">
+                        <div class="text">
+                            <i class="ri-upload-cloud-line"></i>
+                            <h2>Drag and drop file here or click to select</h2>
+                        </div>
+                    </div>
+                </label>
+            </div>
+
+            <!-- MySQL Connection Section -->
+            <div class="section" id="mysqlSection" style="display: none;">
+                <p>🔌 Connect to MySQL Database</p>
+                <div class="mysql-form">
+                    <div class="form-group">
+                        <label for="host">Host:</label>
+                        <input type="text" id="host" placeholder="localhost" value="localhost">
+                    </div>
+                    <div class="form-group">
+                        <label for="port">Port:</label>
+                        <input type="text" id="port" placeholder="3306" value="3306">
+                    </div>
+                    <div class="form-group">
+                        <label for="user">User:</label>
+                        <input type="text" id="user" placeholder="root">
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Password:</label>
+                        <input type="password" id="password">
+                    </div>
+                    <button id="connectBtn" class="action-btn">Connect</button>
+                </div>
+                
+                <!-- Database and Table Selection (initially hidden) -->
+                <div id="dbTableSelection" style="display: none;">
+                    <div class="form-group">
+                        <label for="databaseSelect">Select Database:</label>
+                        <select id="databaseSelect"></select>
+                    </div>
+                    <div class="form-group">
+                        <label for="tableSelect">Select Table:</label>
+                        <select id="tableSelect"></select>
+                    </div>
+                    <button id="loadTableBtn" class="action-btn">Load Table</button>
+                </div>
+            </div>
+
+            <!-- Query Input -->
+            <div class="q-section">
+                <label for="questionInput">💬 Ask a question about your data:</label>
+                <input type="text" id="questionInput" placeholder="Ask Your Question" onkeypress="handleKeyPress(event)">
+                <button onclick="submitQuestion()" class="query-btn">Submit</button>
+            </div>
+            
+            <!-- Results Display -->
+             <div class="results">
+                <div id="dataPreview"></div>
+                <div id="sqlSection"></div>
+                <div id="answerSection"></div>
+            </div>
+
+            <div class="chart-option-section">
+                <br>
+            
+                <select id="chartType">
+                    <option value="" disabled selected>Select the Chart Type</option>
+                    <option value="bar">Bar</option>
+                    <option value="line">Line</option>
+                    <option value="pie">Pie</option>
+                    <option value="scatter">Scatter</option>
+                </select>
+                <br>
+            </div>
+
+            <!-- Visualization Section -->
+            <div class="visualization-section">
+                <div id="chartSection">
+                    <canvas id="chartCanvas"></canvas>
+                </div>
+            </div>
+            
+        </div>
+    </main>
+    
+    <script>
+        function handleKeyPress(event) {
+            if (event.key === "Enter") {
+                submitQuestion();
+            }
+        }
+    </script>
+
+    <script src="/static/js/main.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="/static/js/charts.js"></script>
+</body>
+
+</html>
