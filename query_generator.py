@@ -2,7 +2,7 @@
 import google.generativeai as genai
 
 def generate_sql(question: str, schema: str) -> str:
-    genai.configure(api_key='AIzaSyAiJAmnAiF815MvsWZcheLTqIYSw49COR4')
+    genai.configure(api_key="YOUR GEMINI API KEY") // Your key here
 
     model = genai.GenerativeModel('gemini-1.5-flash')
     prompt = f"""
