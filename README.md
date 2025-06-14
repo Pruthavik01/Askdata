@@ -42,4 +42,5 @@ Install the following tools before running:
 
 Install Python dependencies:
 ```bash
-pip install flask pandas mysql-connector-python google-generativeai openpyxl
+pip install -r requirements.txt
+
