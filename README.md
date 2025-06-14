@@ -18,7 +18,6 @@ Built with Gemini AI, it supports:
 - 🤖 **Gemini API Integration** for generating SQL queries from questions
 - 📄 **Schema Preview & SQL Output**
 - 📊 **Auto-render Charts** from query results
-- 🔒 **Secure Input Handling** for database access
 
 ---
 
