@@ -1,6 +1,6 @@
-flask==2.2.3
-pandas==1.5.3
-pandasql==0.7.3
-mysql-connector-python==8.0.32
-google-generativeai==0.3.0
-openpyxl==3.1.2
+flask
+pandas
+pandasql
+mysql-connector-python
+google-generativeai
+openpyxl

@@ -1,8 +1,19 @@
 
 import google.generativeai as genai
 
+
+from dotenv import load_dotenv
+import os
+
+# Load environment variables from .env file
+load_dotenv()
+
+# Access the key
+apikey = os.getenv("GEMINI_API_KEY")
+
+
 def generate_sql(question: str, schema: str) -> str:
-    genai.configure(api_key='GEMINI_API_KEY')
+    genai.configure(api_key=apikey)
 
     model = genai.GenerativeModel('gemini-1.5-flash')
     prompt = f"""
