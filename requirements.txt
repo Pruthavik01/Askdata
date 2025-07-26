@@ -4,3 +4,4 @@ pandasql
 mysql-connector-python
 google-generativeai
 openpyxl
+python-dotenv
