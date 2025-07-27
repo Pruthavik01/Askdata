@@ -32,7 +32,7 @@ def upload_file():
         return jsonify({'error': 'Empty filename'}), 400
 
     uploaded_file_path = os.path.join(app.config['UPLOAD_FOLDER'], file.filename)
-    # file.save(uploaded_file_path)
+    file.save(uploaded_file_path)
 
     # Process data and get schema
     df, schema = process_data(uploaded_file_path)
