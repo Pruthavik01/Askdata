@@ -258,17 +258,19 @@ def execute_query_from_file(sql_query, filepath):
     :return: Query result as a Pandas DataFrame or error string.
     """
     try:
-        # Load the CSV file into a Pandas DataFrame
-        df = pd.read_csv(filepath)
+        # Try reading with utf-8 first, fallback to ISO-8859-1
+        try:
+            df = pd.read_csv(filepath, encoding='utf-8')
+        except UnicodeDecodeError:
+            df = pd.read_csv(filepath, encoding='ISO-8859-1')  # Latin-1 fallback
 
-        # Ensure the query does NOT contain Markdown-style formatting
-        sql_query = sql_query.strip()  # Remove unnecessary spaces/newlines
-
-        # Execute the SQL query using pandasql
+        sql_query = sql_query.strip()
         result = sqldf(sql_query, locals())
         return result
+
     except Exception as e:
         return str(e)
+
 
 def execute_query_from_mysql(sql_query, database, table):
     """
